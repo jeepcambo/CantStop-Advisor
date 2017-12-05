@@ -1,6 +1,6 @@
 '''
 
-"Can't Stop" Move Calculator
+"Can't Stop" Move Calculator v0.3
 An abomination by Jeffrey Campbell
 
 Uses the rule of 28 to determine whether the player should roll again or stop
@@ -36,8 +36,8 @@ class TurnCount:
 
 def process_input():
     x = str(raw_input('Enter your roll(s)!\n'))
-
-    if len(x) == 1:  # Only one number rolled
+    raw = re.split('[\s]+', x)
+    if len(raw) == 1:  # Only one number rolled
         roll_1 = int(x)
         roll_2 = 0
     else:  # No doubles rolled
@@ -65,7 +65,7 @@ while True:
         if check_valid(rolls):  # Check inputted rolls are valid numbers
             x.update(rolls[0], rolls[1])
             if x.count < rule:
-                print 'ROLL AGAIN! You have:', x.count
+                print 'DON\'T STOP! You have:', x.count
             else:
                 print 'STOP! You have:',x.count,'Unless you have balls of steel...'
         else:  # User has signalled that they wiped out
